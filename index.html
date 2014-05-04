@@ -4,18 +4,90 @@
 
 html {
   font-family: "Droid Sans", sans-serif;
+  font-size: 18px;
+  line-height: 1.4;
+}
+input[type=text] {
+  font-family: "Droid Sans", sans-serif;
+  font-size: 18px;
+  line-height: 1.4;
+  padding: .1em .5em;
+}
+
+label {
+  21px;
 }
 
 #response {
-  font-size: 26px;
-  width: 60%;
+  font-family: "Droid Sans", sans-serif;
+  font-size: 22px;
+  width: 96%;
+  max-width: 488px  ;
+  padding: .3em .5em;
+  line-height: 1.4;
+  height: 7em;
 }
 
 .textcontainer {
   text-align: center;
 }
+
 button {
-  font-size: 20px;
+    display: inline-block;
+    border: 0;
+    font-size: 20px;
+    letter-spacing: 2px;
+    background: #1188f0;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#2e8cff), color-stop(100%,#1188f0));
+    background: -moz-linear-gradient(center top, #2e8cff 0%, #1188f0 100%);
+    -webkit-box-shadow: 0px 5px 0px 0px #006391, 0px -1px 0px 0px #1c95ff inset;
+    -moz-box-shadow: 0px 5px 0px 0px #006391, 0px -1px 0px 0px #1c95ff inset;
+    box-shadow: 0px 5px 0px 0px #006391, 0px -1px 0px 0px #1c95ff inset;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-transition: background-color 0.2s linear;
+    -moz-transition: background-color 0.2s linear;
+    -o-transition: background-color 0.2s linear;
+    transition: background-color 0.2s linear;
+    text-shadow: 0px 1px 0px #006ac7;
+    padding: 5px 15px;
+    text-transform: uppercase;
+    text-align: center;
+    color: #ffffff;
+}
+button:hover {
+    cursor: pointer;
+    background: #1995fa;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#2e8cff), color-stop(100%,#2e8cff));
+    background: -moz-linear-gradient(center top, #2e8cff 0%, #2e8cff 100%);
+}
+button:active {
+    -webkit-box-shadow: 0px 2px 0px 0px #006391, 0px -1px 0px 0px #1491ff inset;
+    -moz-box-shadow: 0px 2px 0px 0px #006391, 0px -1px 0px 0px #1491ff inset;
+    box-shadow: 0px 2px 0px 0px #006391, 0px -1px 0px 0px #1491ff inset;
+    -webkit-transition: background-position 0.3s linear;
+    -moz-transition: background-position 0.3s linear;
+    -o-transition: background-position 0.3s linear;
+    transition: background-position 0.3s linear;
+    -webkit-transform: translateY(3px);
+    -moz-transform: translateY(3px);
+    transform: translateY(3px);
+}
+button:focus {
+  outline: none;
+}
+
+.wrap{
+  max-width: 960px;
+  width: 96%;
+  padding: 0 2%;
+  margin: 0 auto;
+  padding-bottom: 30px;
+}
+
+.type-as-much {
+  font-size: 21px;
 }
 
 </style>
@@ -26,10 +98,10 @@ button {
 <form id="form" action="https://docs.google.com/forms/d/1hMIa1eWAsWmNKNUJ9zXOxFT1DfqGKZn3yMd9nz_wW5U/formResponse" method="POST"></form>
 
 <div id="page">
+  <div class="wrap">
   <h1>Welcome!</h1>
   <div class="instructions" id="instructions">
     <p>
-
 INSTRUCTIONS:
 In this exercise, you will hear a series of recorded sentences, played one at a time. After each one, your job is to type out as much as you can remember of the sentence.</p><p>
 
@@ -45,7 +117,7 @@ There are 58 sentences in total. The whole task will take about 45 minutes.</p><
 
 First, please enter your Amazon Mechanical Turk ID. Please make sure it is correct or we will not be able to compensate you:
 </p><p>
-<label>AMT ID:</label><input type='text' id='AMTid'></p><p>
+<label>AMT ID:</label>&nbsp;&nbsp;<input type='text' id='AMTid' placeholder="Your AMT ID"></p><p>
 
 
 Ready? 
@@ -53,7 +125,7 @@ Ready?
   </p>
   <button class="instructions" id="ready">Begin</button>
   </div>
-
+</div>
 
 </div>
 
@@ -156,7 +228,7 @@ setToAudio = function() {
 
 setToInput = function() {
     nextbutton = "<button id='next'>Next sentence</button>"
-    label = "<label>Type as much as you can remember of the sentence.</label><p><textarea id='response'></textarea></p>";
+    label = "<label class='type-as-much'>Type as much as you can remember of the sentence.</label><p><textarea id='response'></textarea></p>";
     formhtml = "<div class='textcontainer'>"+label+nextbutton+"</div>";
     $("#page").html(formhtml);
     console.log("called setToInput");
