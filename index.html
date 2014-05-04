@@ -1,4 +1,27 @@
-<html><body>
+<html>
+<head><link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'>
+<style>
+
+html {
+  font-family: "Droid Sans", sans-serif;
+}
+
+#response {
+  font-size: 26px;
+  width: 60%;
+}
+
+.textcontainer {
+  text-align: center;
+}
+button {
+  font-size: 20px;
+}
+
+</style>
+
+
+</head><body>
 
 <form id="form" action="https://docs.google.com/forms/d/1hMIa1eWAsWmNKNUJ9zXOxFT1DfqGKZn3yMd9nz_wW5U/formResponse" method="POST"></form>
 
@@ -34,7 +57,7 @@ Ready?
 
 </div>
 
-<script src="//code.jquery.com/jquery-2.1.0.min.js"></script>
+<script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
 
 <script>
 
@@ -99,9 +122,8 @@ sources = [ {"audioSource": prefix+"1_Nora_Filler_1_reporter.wav",    "name": "e
            ,{"audioSource": prefix+"58_Nora_Filler_42_closet.wav",    "name": "entry.1911648434"}
           ];
   
-  var AMTidField = "<input type='hidden' value='' name='entry.1153672825"
-  $("form").append(AMTidField);
-  
+var AMTidField = "<input type='hidden' value='' name='entry.1153672825'>"
+$("form").append(AMTidField);
 
 for(i = 0; i<sources.length; i++){
   var name = sources[i]["name"]
@@ -109,36 +131,33 @@ for(i = 0; i<sources.length; i++){
   $("#form").append(input_string);
 }
 
-
-
 var timer;
 var masterIndex = 0;
 
-
 play = function(){
+  setTimeout(function() {
+    $("#mysound")[0].play();
+  }, 1000);
+}
+
+buildAudio = function() {
+  audioSource = sources[masterIndex]["audioSource"];
+  audiohtml = "<audio id='mysound' src='"+audioSource+"'></audio>";
   $("#page").html(audiohtml);
 }
 
 setToAudio = function() {
-  setTimeout(function() {
-  audioSource = sources[masterIndex]["audioSource"];
-  audiohtml = "<audio src='"+audioSource+"' autoplay id='sound'></audio><button id='done'>Ready to type!</button>";
-
+  buildAudio();
   play();
-
-  timer = setTimeout(setToInput, 20000);
-  $("#done").on("click", function(){
-    clearTimeout(timer);
-    setToInput();
+  $("#mysound").on("ended", function(){
+    setTimeout(setToInput, 2000);
   });
-
-  }, 1000);
-
-  
 }
 
-setToInput = function(inputname) {
-    formhtml = "<label>Type as much as you can remember of the sentence.</label><input type='text' id='response'><button id='next'>Next</button>";
+setToInput = function() {
+    nextbutton = "<button id='next'>Next sentence</button>"
+    label = "<label>Type as much as you can remember of the sentence.</label><p><textarea id='response'></textarea></p>";
+    formhtml = "<div class='textcontainer'>"+label+nextbutton+"</div>";
     $("#page").html(formhtml);
     console.log("called setToInput");
     
@@ -169,27 +188,35 @@ setToInput = function(inputname) {
           })};
         
       if(masterIndex == 57) {
-          formhtml = "<label>Type as much as you can remember of the sentence.</label><input type='text' id='response'><button id='next'>Task complete!</button>";
+          donebutton = "<button id='next'>Task complete!</button>";
+          formhtml = "<div class='textcontainer'>"+label+donebutton+"</div>";
           $("#page").html(formhtml);
           recordtimer = setTimeout(function() { record_final(); }, 120000);
           $("#next").on("click", function(){
-          clearTimeout(recordtimer);
-          record_final();
+            clearTimeout(recordtimer);
+            window.onbeforeunload = null;
+            record_final();
           })};
 
 }
 
 
-$("#ready").on("click", function(){AMTid = $("#AMTid").val();
-  hidden_ID = $("input[name='entry.1153672825']");
-  console.log(hidden_ID);
-  hidden_ID.val(AMTid);
-  console.log(AMTid);
-  setToAudio();
-
-
+$("#ready").on("click", function(){
+  AMTid = $("#AMTid").val();
+  if(AMTid==""){
+    alert("Please enter your Amazon Mechanical Turk ID.")
+  } else {
+    hidden_ID = $("input[name='entry.1153672825']");
+    console.log(hidden_ID);
+    hidden_ID.val(AMTid);
+    console.log(AMTid);
+    setToAudio();
+  }
 });
 
+window.onbeforeunload = function(e) {
+  return "don't leave!";
+};
 </script>
 </body>
 </html>
