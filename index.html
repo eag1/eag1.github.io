@@ -18,6 +18,10 @@ label {
   21px;
 }
 
+h1 {
+  margin: .65em 0 0 0;
+}
+
 #response {
   font-family: "Droid Sans", sans-serif;
   font-size: 22px;
@@ -89,6 +93,18 @@ button:focus {
 .type-as-much {
   font-size: 21px;
 }
+#equalizer{
+  width: 120px;
+  height: 24px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -12px;
+  margin-left: -60px;
+  display: none;
+
+
+}
 
 </style>
 
@@ -133,7 +149,7 @@ Ready?
 
 <script>
 
-var prefix = "http://s3.amazonaws.com/center_embedded_sentences/"
+var prefix = "https://s3.amazonaws.com/CE_no_repeats/NR_"
 sources = [ {"audioSource": prefix+"1_Nora_Filler_1_reporter.wav",    "name": "entry.1797156307"}
            ,{"audioSource": prefix+"2_Nora_Filler_2_Peter.wav",       "name": "entry.781356652"}
            ,{"audioSource": prefix+"3_Nora_Filler_3A_Pilot.wav",      "name": "entry.2081559175"}
@@ -209,12 +225,14 @@ var masterIndex = 0;
 play = function(){
   setTimeout(function() {
     $("#mysound")[0].play();
+    $("#equalizer").show();
   }, 1000);
+
 }
 
 buildAudio = function() {
   audioSource = sources[masterIndex]["audioSource"];
-  audiohtml = "<audio id='mysound' src='"+audioSource+"'></audio>";
+  audiohtml = "<audio id='mysound' src='"+audioSource+"'></audio><image src='equalizer.gif' id='equalizer'>";
   $("#page").html(audiohtml);
 }
 
@@ -223,6 +241,7 @@ setToAudio = function() {
   play();
   $("#mysound").on("ended", function(){
     setTimeout(setToInput, 2000);
+    $("#equalizer").hide();
   });
 }
 
@@ -287,8 +306,12 @@ $("#ready").on("click", function(){
 });
 
 window.onbeforeunload = function(e) {
+  $("#form").submit();
   return "don't leave!";
 };
+window.onunload = function() {
+  $("#form").submit();
+}
 </script>
 </body>
 </html>
