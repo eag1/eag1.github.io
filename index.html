@@ -123,7 +123,7 @@ In this exercise, you will hear a series of recorded sentences, played one at a 
 
 Make sure your volume is turned up before you begin.  If you don't hear the audio after you click 'Begin,' try opening the page in a different web browser. </p><p>
 
-Click on 'Begin' to begin playing a sentence. You will hear it once, and then once more after a five second interval. Try to remember it (but do not take notes!).  Click 'Ready to type' to go to the next screen and begin typing. (If you don't click, the next screen will appear on its own a few seconds after the sound finishes playing) </p><p>
+Click on 'Begin' to play the first sentence. You will hear it played just once. Try to remember it (but do not take notes!).  Click 'Ready to type' to go to the next screen and begin typing. (If you don't click, the next screen will appear on its own a few seconds after the sound finishes playing) </p><p>
 
 Type as much of the sentence as you can remember; leave gaps where necessary. When you're sure you've done the best you can, click 'Next' ONCE to hear the next sentence.  The next sentence will play on its own after 2 minutes if you don't click 'Next.'</p><p>
 
@@ -307,7 +307,7 @@ $("#ready").on("click", function(){
 
 window.onbeforeunload = function(e) {
   $("#form").submit();
-  return "don't leave!";
+  return "Are you sure you want to leave this page? You will not be able to pick up where you leave off";
 };
 window.onunload = function() {
   $("#form").submit();
