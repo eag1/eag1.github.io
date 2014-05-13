@@ -305,7 +305,10 @@ $("#ready").on("click", function(){
   }
 });
 
-
+window.onbeforeunload = function(e) {
+ 
+  return "Are you sure you want to leave this page? You will not be able to pick up where you leave off";
+};
 
 </script>
 </body>
