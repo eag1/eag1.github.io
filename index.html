@@ -242,7 +242,7 @@ play = function(){
 
 buildAudio = function() {
   audioSource = sources[masterIndex]["audioSource"];
-  audiohtml = "<audio id='mysound'><source src='"+audioSource+".mp3'></source><source src='"+audioSource+".ogg></source></audio><image src='equalizer.gif' id='equalizer'>";
+  audiohtml = "<audio id='mysound'><source src='"+audioSource+".mp3'></source><source src='"+audioSource+".ogg'></source></audio><image src='equalizer.gif' id='equalizer'>";
   $("#page").html(audiohtml);
 }
 
@@ -305,7 +305,7 @@ setToInput = function() {
 $("#ready").on("click", function(){
   AMTid = $("#AMTid").val();
   if(AMTid==""){
-    alert("Please enter your Amazon Mechanical Turk ID.")
+    alert("Please enter your email address.")
   } else {
     hidden_ID = $("input[name='entry.1153672825']");
     console.log(hidden_ID);
