@@ -128,7 +128,7 @@ In this exercise, you will hear a series of recorded sentences, played one at a 
 First, click the play button below to test your audio. If your volume is up and you don't hear anything, try opening the page in another browser. Note: the sound may not work if you are using Internet Explorer.
 </p>
 <p>
-<audio id="sound-test-audio" controls><source src="https://s3.amazonaws.com/CE_no_repeats/test_audio.mp3"><source src="https://s3.amazonaws.com/CE_no_repeats/test_audio.ogg"><strong>Your browser does not support this experiment. Please use Firefox or Chrome</strong></audio>
+<audio id="sound-test-audio" controls><source src="https://s3.amazonaws.com/CE_no_repeats/test_audio.mp3"></source><source src="https://s3.amazonaws.com/CE_no_repeats/test_audio.ogg"></source><strong>Your browser does not support this experiment. Please use Firefox or Chrome</strong></audio>
 </p>
 
 <p>
@@ -242,7 +242,7 @@ play = function(){
 
 buildAudio = function() {
   audioSource = sources[masterIndex]["audioSource"];
-  audiohtml = "<audio id='mysound'><source src='"+audioSource+".mp3'><source src='"+audioSource+".ogg></audio><image src='equalizer.gif' id='equalizer'>";
+  audiohtml = "<audio id='mysound'><source src='"+audioSource+".mp3'></source><source src='"+audioSource+".ogg></source></audio><image src='equalizer.gif' id='equalizer'>";
   $("#page").html(audiohtml);
 }
 
