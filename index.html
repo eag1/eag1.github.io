@@ -255,7 +255,7 @@ setToAudio = function() {
 
 setToInput = function() {
     nextbutton = "<button id='next'>Next sentence</button>"
-    label = "<label class='type-as-much'>Type as much as you can remember of the sentence.</label><p><textarea id='response'></textarea></p>";
+    label = "<p>Sentence "+(masterIndex+1)+" of 58</p><label class='type-as-much'>Type as much as you can remember of the sentence.</label><p><textarea id='response'></textarea></p>";
     formhtml = "<div class='textcontainer'>"+label+nextbutton+"</div>";
     $("#page").html(formhtml);
     console.log("called setToInput");
