@@ -240,6 +240,7 @@ play = function(){
 buildAudio = function() {
   audioSource = sources[masterIndex]["audioSource"];
   audiohtml = "<audio id='mysound'><source src='"+audioSource+".mp3'></source><source src='"+audioSource+".ogg'></source></audio><image src='equalizer.gif' id='equalizer'>";
+  ga('send', 'event', 'sound', 'play', audioSource);
   $("#page").html(audiohtml);
 }
 
@@ -286,6 +287,7 @@ setToInput = function() {
           })};
         
       if(masterIndex == 57) {
+          ga('send', 'event', 'task', 'complete', 'done');
           donebutton = "<button id='next'>Task complete!</button>";
           formhtml = "<div class='textcontainer'>"+label+donebutton+"</div>";
           $("#page").html(formhtml);
