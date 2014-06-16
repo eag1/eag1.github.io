@@ -491,9 +491,9 @@ These sentences are intended to be difficult, and some of them are spoken in a s
  
 There are 58 sentences in total. The whole task will take about 40 minutes.</p><p>
 
-Please enter the email address you use to log in to Amazon Mechanical Turk. Please make sure it is correct or we will not be able to compensate you:
+Please enter your Amazon Mechanical Turk Worker ID:
 </p><p>
-<label>Email address:</label>&nbsp;&nbsp;<input type='text' id='AMTid' placeholder="Your email address"></p><p>
+<label>Email address:</label>&nbsp;&nbsp;<input type='text' id='AMTid' placeholder="Your worker ID"></p><p>
 
 
 Ready?  
@@ -658,7 +658,7 @@ setToInput = function() {
 $("#ready").on("click", function(){
   AMTid = $("#AMTid").val();
   if(AMTid==""){
-    alert("Please enter your Amazon Mechanical Turk Email.")
+    alert("Please enter your Amazon Mechanical Turk Worker ID.")
   } else {
     hidden_ID = $("input[name='entry.1153672825']");
     console.log(hidden_ID);
