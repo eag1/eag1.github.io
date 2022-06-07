@@ -5,7 +5,6 @@ jobs:
   Add_New_Issue_To_Project:
     runs-on: ubuntu-latest
     steps:
-    - uses: konradpabjan/actions-add-new-issue-to-column@v1.1
       with:
         action-token: "${{ secrets.TOKEN }}"
         project-url: "https://github.com/users/eag1/projects/1"
